@@ -34,15 +34,16 @@ with open (r"ai\shark_datasets_with_AI_predictions1.json","r") as f:
     unlabeled_data=json.load(f)
 
 for dataset in unlabeled_data:
-    for reading in dataset["readings"]:  
-        features = [[reading["surface_temperature"], 
-                     reading["depth"], 
-                     reading["acceleration"]]] 
+    for reading in dataset["readings"]:
+        features = pd.DataFrame([[
+            reading["surface_temperature"],
+            reading["depth"],
+            reading["acceleration"]
+        ]], columns=["surface_temperature", "depth", "acceleration"])
+
         probability = model.predict(features)[0]
-        reading["predicted_probability_eating"] = round(float(probability),2)
-        #print("Predicted feeding probability:", probability)
+        reading["predicted_probability_eating"] = round(float(probability), 2)
 
 with open(r"ai\shark_datasets_with_AI_predictions1.json","w") as f: 
     json.dump(unlabeled_data,f,indent=2)
-    print("Sucessfuly created file")
 
