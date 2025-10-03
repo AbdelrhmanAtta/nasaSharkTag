@@ -12,7 +12,7 @@ ADAFRUIT_IO_USERNAME = os.getenv("ADAFRUIT_IO_USERNAME")
 ADAFRUIT_IO_KEY = os.getenv("ADAFRUIT_IO_KEY")
 FEED_ID = "tag-data" 
 
-OUTPUT_FILE = "collected_dataset.json"
+OUTPUT_FILE = r"json/collected_dataset.json"
 # Initialize dataset if file doesn't exist
 if not os.path.exists(OUTPUT_FILE):
     # dataset = [{
@@ -40,7 +40,6 @@ def message(client, feed_id, payload):
         parts = payload.split(",")
         year, month, day, hour, minute, second, tag_id, depth, temp, lat, lon = parts
 
-        # Build JSON record
         record = {
             "timestamp": f"{year}-{month}-{day} {hour}:{minute}:{second}",
             "tag_id": tag_id,
@@ -50,31 +49,25 @@ def message(client, feed_id, payload):
             "longitude": float(lon)
         }
 
-        # Load existing JSON data
         with open(OUTPUT_FILE, "r") as f:
             data = json.load(f)
 
-        # Append new record
         data.append(record)
 
-        # Save back to file
         with open(OUTPUT_FILE, "w") as f:
             json.dump(data, f, indent=2)
 
         print("✅ Saved record:", record)
     except Exception as e:
-        print("⚠ Error parsing payload:", e)
+        print(" Error parsing payload:", e)
         print("Raw payload:", payload)
 
 
-# Create MQTT client instance
 client = MQTTClient(ADAFRUIT_IO_USERNAME, ADAFRUIT_IO_KEY)
 
-# Assign callback functions
 client.on_connect = connected
 client.on_disconnect = disconnected
 client.on_message = message
 
-# Connect and block forever
 client.connect()
 client.loop_blocking()
