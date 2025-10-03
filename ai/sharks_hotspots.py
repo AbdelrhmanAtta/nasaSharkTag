@@ -141,7 +141,7 @@ pace_sst_on_modis = np.full(grid_shape, np.nan)
 pace_sst_on_modis.ravel()[:] = mapped_vals
 print("Mapped SWOT -> MODIS; assigned cells:", np.sum(np.isfinite(pace_sst_on_modis)))
 
-json_path = "ai\shark_datasets_with_AI_predictions1.json"
+json_path = r"json\shark_datasets_with_AI_predictions1.json"
 with open(json_path, "r") as f:
     shark_data = json.load(f)
 
