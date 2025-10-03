@@ -1,4 +1,3 @@
-# Final improved version with plotting and robustness fixes
 import json
 import numpy as np
 import xarray as xr
@@ -13,7 +12,6 @@ import warnings
 
 warnings.simplefilter("default")
 
-# ------------------ Helper utilities (same as yours) ------------------
 def detect_coord_name(ds, prefer_lat='lat', prefer_lon='lon'):
     coords = list(ds.coords)
     latname = None
@@ -24,7 +22,6 @@ def detect_coord_name(ds, prefer_lat='lat', prefer_lon='lon'):
             latname = name
         if 'lon' in n and lonname is None:
             lonname = name
-    # fallbacks
     if latname is None:
         latname = coords[0]
     if lonname is None:
@@ -64,7 +61,6 @@ def safe_float_from_str(s):
             return np.nan
     return np.nan
 
-# ------------------ Load MODIS Data ------------------
 modis_chl_file = r"monthly-data-folder\AQUA_MODIS.20240601_20240630.L3m.MO.CHL.chlor_a.4km.nc"
 modis_sst_file = r"monthly-data-folder\AQUA_MODIS.20240601_20240630.L3m.MO.SST.sst.4km.nc"
 
@@ -79,7 +75,6 @@ print("MODIS coords & vars:", modis_lat_name, modis_lon_name, chl_var, sst_var)
 chl_da = take_first_time_if_present(modis_chl_ds[chl_var]).squeeze()
 sst_da = take_first_time_if_present(modis_sst_ds[sst_var]).squeeze()
 
-# ------------------ Load SWOT Data ------------------
 swot_file = r"resources\SWOT_L2_LR_SSH_Basic_039_188_20250927T182722_20250927T185509_PID0_01.nc"
 swot_ds = xr.open_dataset(swot_file)
 
@@ -96,19 +91,15 @@ swot_lon = swot_lon[valid_swot_mask]
 swot_val = swot_val[valid_swot_mask]
 print("SWOT valid count:", swot_lat.size)
 
-# ------------------ Subset MODIS to SWOT region (handle 0..360) ------------------
 lat_min, lat_max = float(np.nanmin(swot_lat)), float(np.nanmax(swot_lat))
 lon_min, lon_max = float(np.nanmin(swot_lon)), float(np.nanmax(swot_lon))
 
-# detect modis lon convention
 modis_lon_vals = modis_chl_ds[modis_lon_name].values if modis_lon_name in modis_chl_ds.coords else modis_chl_ds.coords[modis_lon_name].values
 if modis_lon_vals.min() >= 0 and np.nanmin(swot_lon) < 0:
-    # convert SWOT lon to 0..360 if needed
     swot_lon = np.where(swot_lon < 0, swot_lon + 360, swot_lon)
     lon_min, lon_max = float(np.nanmin(swot_lon)), float(np.nanmax(swot_lon))
     print("Converted SWOT lon to 0..360 to match MODIS.")
 
-# use coordinate arrays for slicing
 modis_lat_vals = chl_da[modis_lat_name].values if modis_lat_name in chl_da.coords else chl_da.coords[modis_lat_name].values
 modis_lon_vals = chl_da[modis_lon_name].values if modis_lon_name in chl_da.coords else chl_da.coords[modis_lon_name].values
 
@@ -123,14 +114,12 @@ modis_sst_subset = sst_da.sel({modis_lat_name: lat_slice, modis_lon_name: lon_sl
 
 print("MODIS subset shapes:", modis_chl_subset.shape, modis_sst_subset.shape)
 
-# build grids (2D lon/lat)
 modis_lat = modis_chl_subset[modis_lat_name].values
 modis_lon = modis_chl_subset[modis_lon_name].values
 lon2d, lat2d = np.meshgrid(modis_lon, modis_lat)
 grid_shape = lat2d.shape
 print("Grid shape:", grid_shape)
 
-# ------------------ Map SWOT -> MODIS via sphere KDTree with max distance ------------------
 stride = 10
 swot_lat_sub = swot_lat[::stride]
 swot_lon_sub = swot_lon[::stride]
@@ -141,13 +130,9 @@ grid_xyz = latlon_to_cartesian(lat2d.ravel(), lon2d.ravel())
 tree = cKDTree(swot_xyz)
 dist, idx = tree.query(grid_xyz, k=1)
 
-# apply max distance threshold in radians approx (example ~50 km)
-# convert meters -> angular distance: ang = dist_m / Earth_radius. We used unit sphere in latlon_to_cartesian
-# On unit sphere, chord length ~ 2*sin(ang/2). We can set threshold using chord length approximation:
 earth_r = 6371000.0
 max_dist_m = 50_000.0
 ang = max_dist_m / earth_r
-# chord length threshold:
 chord_thresh = 2.0 * np.sin(ang/2.0)
 mapped_vals = swot_val_sub[idx]
 mapped_vals[dist > chord_thresh] = np.nan
@@ -156,7 +141,6 @@ pace_sst_on_modis = np.full(grid_shape, np.nan)
 pace_sst_on_modis.ravel()[:] = mapped_vals
 print("Mapped SWOT -> MODIS; assigned cells:", np.sum(np.isfinite(pace_sst_on_modis)))
 
-# ------------------ Shark JSON load (same robust parsing) ------------------
 json_path = "ai\shark_datasets_with_AI_predictions1.json"
 with open(json_path, "r") as f:
     shark_data = json.load(f)
@@ -184,7 +168,6 @@ for record in shark_data:
 shark_points = np.array(shark_points)
 print("Loaded shark records:", shark_points.shape)
 
-# ------------------ Build features ------------------
 chl_flat = modis_chl_subset.values.flatten()
 sst_flat = modis_sst_subset.values.flatten()
 pace_flat = pace_sst_on_modis.flatten()
@@ -206,12 +189,10 @@ scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
 print("X_scaled shape:", X_scaled.shape)
 
-# ------------------ Labels (same as yours, but note it's arbitrary) ------------------
 y = ((X_scaled[:, 0] > 0.5) & (X_scaled[:, 1] < -0.2)).astype(int)
 if len(np.unique(y)) == 1:
     print("Warning: Only one class present in labels. RF will be trained on single class (predict_proba may fail).")
 
-# ------------------ Downsample, train ------------------
 n_samples = min(20000, len(X_scaled))
 X_small, y_small = resample(X_scaled, y, n_samples=n_samples, random_state=42)
 X_train, X_test, y_train, y_test = train_test_split(X_small, y_small, test_size=0.2, random_state=42)
@@ -222,12 +203,9 @@ clf.fit(X_train, y_train)
 y_pred = clf.predict(X_test)
 print(classification_report(y_test, y_pred, zero_division=0))
 
-# ------------------ Predict back on full grid ------------------
 pred_map = np.full(grid_shape, np.nan)
-# handle the single-class edge: if only one class in training, use predict() not predict_proba
 if len(clf.classes_) == 1:
-    probs = clf.predict(X_scaled)  # will be 0 or 1 depending on that single class
-    # convert to "probability-like" values (0 or 1)
+    probs = clf.predict(X_scaled)  
     probs = probs.astype(float)
 else:
     probs = clf.predict_proba(X_scaled)[:, 1]
@@ -236,17 +214,13 @@ flat_pred_map = pred_map.ravel()
 flat_pred_map[mask_modis] = probs
 pred_map = flat_pred_map.reshape(grid_shape)
 
-# If lat descending, flip for plotting (so coordinates and data match)
 if modis_lat[0] > modis_lat[-1]:
     pred_map = np.flipud(pred_map)
     modis_lat = modis_lat[::-1]
     lat2d = np.flipud(lat2d)
     lon2d = np.flipud(lon2d)
 
-# ------------------ Plot with pcolormesh (properly aligned) ------------------
 plt.figure(figsize=(10, 6))
-# pcolormesh requires corner grid; pass lon2d/lat2d and pred_map
-# If lon/lats are 1D regularly spaced, pcolormesh still works with meshgrid arrays.
 pcm = plt.pcolormesh(lon2d, lat2d, pred_map, shading='auto', cmap='coolwarm', vmin=0, vmax=1)
 plt.xlabel("Longitude")
 plt.ylabel("Latitude")
