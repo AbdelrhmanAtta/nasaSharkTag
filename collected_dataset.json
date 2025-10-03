@@ -1,0 +1,110 @@
+[
+  {
+    "dataset_id": "456f565b-4de7-43ca-b629-2052cfa05030",
+    "readings": []
+  },
+  {
+    "timestamp": "2025-01-01 00:05:00",
+    "tag_id": "7457195692838635424",
+    "depth": 218.14,
+    "temperature": 19.97,
+    "latitude": 61.135049,
+    "longitude": 28.97032
+  },
+  {
+    "timestamp": "2025-01-01 00:10:00",
+    "tag_id": "7457195692838635424",
+    "depth": 427.26,
+    "temperature": 17.54,
+    "latitude": -62.909077,
+    "longitude": -127.694146
+  },
+  {
+    "timestamp": "2025-01-01 00:15:00",
+    "tag_id": "7457195692838635424",
+    "depth": 31.31,
+    "temperature": 18.27,
+    "latitude": -48.557975,
+    "longitude": 53.448926
+  },
+  {
+    "timestamp": "2025-01-01 00:20:00",
+    "tag_id": "7457195692838635424",
+    "depth": 435.98,
+    "temperature": 8.55,
+    "latitude": -19.317998,
+    "longitude": -22.68426
+  },
+  {
+    "timestamp": "2025-01-01 00:25:00",
+    "tag_id": "7457195692838635424",
+    "depth": 206.51,
+    "temperature": 12.66,
+    "latitude": -32.379771,
+    "longitude": 131.636176
+  },
+  {
+    "timestamp": "2025-01-01 00:30:00",
+    "tag_id": "7457195692838635424",
+    "depth": 194.33,
+    "temperature": 12.18,
+    "latitude": 81.591114,
+    "longitude": -157.814483
+  },
+  {
+    "timestamp": "2025-01-01 00:35:00",
+    "tag_id": "7457195692838635424",
+    "depth": 137.13,
+    "temperature": 18.73,
+    "latitude": 52.13605,
+    "longitude": -37.266202
+  },
+  {
+    "timestamp": "2025-01-01 00:40:00",
+    "tag_id": "7457195692838635424",
+    "depth": 9.64,
+    "temperature": 24.43,
+    "latitude": -47.201614,
+    "longitude": -73.18194
+  },
+  {
+    "timestamp": "2025-01-01 00:45:00",
+    "tag_id": "7457195692838635424",
+    "depth": 270.35,
+    "temperature": 15.79,
+    "latitude": 20.176529,
+    "longitude": -58.518501
+  },
+  {
+    "timestamp": "2025-01-01 00:50:00",
+    "tag_id": "7457195692838635424",
+    "depth": 369.5,
+    "temperature": 8.96,
+    "latitude": -63.652332,
+    "longitude": -155.393036
+  },
+  {
+    "timestamp": "2025-01-01 00:55:00",
+    "tag_id": "7457195692838635424",
+    "depth": 64.08,
+    "temperature": 28.19,
+    "latitude": 5.767129,
+    "longitude": 136.177261
+  },
+  {
+    "timestamp": "2025-01-01 01:00:00",
+    "tag_id": "7457195692838635424",
+    "depth": 58.2,
+    "temperature": 25.57,
+    "latitude": -59.945852,
+    "longitude": 3.039016
+  },
+  {
+    "timestamp": "2025-01-01 01:05:00",
+    "tag_id": "7457195692838635424",
+    "depth": 30.95,
+    "temperature": 10.5,
+    "latitude": -56.145095,
+    "longitude": 172.659599
+  }
+]
