@@ -54,8 +54,7 @@ def safe_open(ds_path):
     return xr.open_dataset(ds_path, decode_times=True, mask_and_scale=True)
 
 # ---------- Files (only these) ----------
-base_dir = r"C:\Users\mr201\Desktop\SIC_Project\nasaSharkTag"
-monthly_dir = os.path.join(base_dir, "monthly-data-folder")
+monthly_dir = "monthly-data-folder"
 
 files = {
     "chl":  os.path.join(monthly_dir, "AQUA_MODIS.20240601_20240630.L3m.MO.CHL.chlor_a.4km.nc"),
