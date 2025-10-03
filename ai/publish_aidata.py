@@ -1,6 +1,7 @@
 import json
 import time
 from Adafruit_IO import Client
+from datetime import datetime
 
 # Your Adafruit IO credentials
 def publish(ADAFRUIT_IO_USERNAME,ADAFRUIT_IO_KEY):
@@ -19,14 +20,16 @@ def publish(ADAFRUIT_IO_USERNAME,ADAFRUIT_IO_KEY):
     for dataset in data:
         for reading in dataset["readings"]:
             time_st=reading["timestamp"]
+            dt = datetime.fromisoformat(time_st)
+            formatted_time = dt.strftime("%Y,%m,%d,%H,%M,%S")
             depth = reading["depth"]
             temp = reading["surface_temperature"]
             lat = reading["location"]["latitude"]
             lon = reading["location"]["longitude"]
             prob = reading["predicted_probability_eating"]
-
+        
             # Create the single string
-            payload = f"{time_st},{depth:.2f}, {temp:.2f}, {lat:.6f}, {lon:.6f}, {prob:.2f}"
+            payload = f"{formatted_time},{depth:.2f},{temp:.2f},{lat:.6f},{lon:.6f},{prob:.2f}"
             print("Publishing:", payload)
 
             # Send to Adafruit IO

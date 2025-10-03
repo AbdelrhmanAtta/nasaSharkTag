@@ -56,7 +56,6 @@ for dataset in unlabeled_data:
 with open(r"ai\shark_datasets_with_AI_predictions1.json","w") as f: 
     json.dump(unlabeled_data,f,indent=2)
 
-
 publish_aidata.publish(ADAFRUIT_IO_USERNAME,ADAFRUIT_IO_KEY)
 
 #water depth, temp,latitude,longitude , probability
