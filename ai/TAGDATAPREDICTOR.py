@@ -4,10 +4,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error
 
-with open (r"C:\\Users\\Lenovo LOQ\\Desktop\\NASA resources\\shark_datasets.json","r") as f:
+with open (r"ai\shark_datasets.json","r") as f:
     data=json.load(f)
 
-rows=[]
 rows=[]
 for dataset in data:
     for reading in dataset["readings"]:
@@ -31,7 +30,7 @@ model.fit(X_train,Y_train)
 Y_prediction=model.predict(X_test)
 print("trained model:",mean_squared_error(Y_test,Y_prediction))
 
-with open (r"C:\\Users\\Lenovo LOQ\\Desktop\\NASA resources\\shark_datasets_no_probability.json","r") as f:
+with open (r"ai\shark_datasets_with_AI_predictions1.json","r") as f:
     unlabeled_data=json.load(f)
 
 for dataset in unlabeled_data:
@@ -41,8 +40,9 @@ for dataset in unlabeled_data:
                      reading["acceleration"]]] 
         probability = model.predict(features)[0]
         reading["predicted_probability_eating"] = round(float(probability),2)
-        print("Predicted feeding probability:", probability)
+        #print("Predicted feeding probability:", probability)
 
-with open(r"C:\Users\Lenovo LOQ\Desktop\NASA resources\shark_datasets_with_AI_predictions1.json","w") as f: 
+with open(r"ai\shark_datasets_with_AI_predictions1.json","w") as f: 
     json.dump(unlabeled_data,f,indent=2)
+    print("Sucessfuly created file")
 
