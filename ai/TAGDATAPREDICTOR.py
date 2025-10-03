@@ -3,6 +3,13 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error
+import publish_aidata
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+ADAFRUIT_IO_USERNAME = os.getenv("ADAFRUIT_IO_USERNAME")
+ADAFRUIT_IO_KEY = os.getenv("ADAFRUIT_IO_KEY")
 
 with open (r"ai\shark_datasets_shifted.json","r") as f:
     data=json.load(f)
@@ -49,3 +56,7 @@ for dataset in unlabeled_data:
 with open(r"ai\shark_datasets_with_AI_predictions1_shifted.json","w") as f: 
     json.dump(unlabeled_data,f,indent=2)
 
+
+publish_aidata.publish(ADAFRUIT_IO_USERNAME,ADAFRUIT_IO_KEY)
+
+#water depth, temp,latitude,longitude , probability
