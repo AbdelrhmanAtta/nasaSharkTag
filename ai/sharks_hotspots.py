@@ -75,7 +75,7 @@ print("MODIS coords & vars:", modis_lat_name, modis_lon_name, chl_var, sst_var)
 chl_da = take_first_time_if_present(modis_chl_ds[chl_var]).squeeze()
 sst_da = take_first_time_if_present(modis_sst_ds[sst_var]).squeeze()
 
-swot_file = r"resources\SWOT_L2_LR_SSH_Basic_039_188_20250927T182722_20250927T185509_PID0_01.nc"
+swot_file = r"monthly-data-folder\SWOT_L2_LR_SSH_Basic_016_541_20240617T115123_20240617T124251_PIC0_01_subsetted_20240619T235226Z_C2799465428-POCLOUD_merged.nc4"
 swot_ds = xr.open_dataset(swot_file)
 
 swot_lat_name, swot_lon_name = detect_coord_name(swot_ds)
