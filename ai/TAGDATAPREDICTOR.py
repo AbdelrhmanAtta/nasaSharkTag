@@ -11,7 +11,7 @@ load_dotenv()
 ADAFRUIT_IO_USERNAME = os.getenv("ADAFRUIT_IO_USERNAME")
 ADAFRUIT_IO_KEY = os.getenv("ADAFRUIT_IO_KEY")
 
-with open (r"ai\shark_datasets.json","r") as f:
+with open (r"ai\shark_datasets_shifted.json","r") as f:
     data=json.load(f)
 
 rows=[]
@@ -37,7 +37,7 @@ model.fit(X_train,Y_train)
 Y_prediction=model.predict(X_test)
 print("trained model:",mean_squared_error(Y_test,Y_prediction))
 
-with open (r"ai\shark_datasets_no_probability.json","r") as f:
+with open (r"ai\shark_datasets_no_probability_shifted.json","r") as f:
     unlabeled_data=json.load(f)
 
 for dataset in unlabeled_data:
@@ -53,7 +53,7 @@ for dataset in unlabeled_data:
         print("Predicted feeding probability:", probability)
 
 
-with open(r"ai\shark_datasets_with_AI_predictions1.json","w") as f: 
+with open(r"ai\shark_datasets_with_AI_predictions1_shifted.json","w") as f: 
     json.dump(unlabeled_data,f,indent=2)
 
 publish_aidata.publish(ADAFRUIT_IO_USERNAME,ADAFRUIT_IO_KEY)
