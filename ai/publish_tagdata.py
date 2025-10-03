@@ -17,7 +17,7 @@ def publish(ADAFRUIT_IO_USERNAME,ADAFRUIT_IO_KEY):
     feed_name = "tag-data"
     feed = aio.feeds(feed_name)
 
-    with open("ai\shark_datasets_no_probability.json", "r") as f:   # replace with your actual filename
+    with open("json\shark_datasets_no_probability.json", "r") as f:   # replace with your actual filename
         data = json.load(f)
 
     # Loop through readings and publish depth, temp, lat, lon, probability
