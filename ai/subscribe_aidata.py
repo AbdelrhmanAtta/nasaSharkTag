@@ -6,11 +6,9 @@ import json
 import uuid
 from datetime import datetime
 
-
-load_dotenv()
-ADAFRUIT_IO_USERNAME = os.getenv("ADAFRUIT_IO_USERNAME")
-ADAFRUIT_IO_KEY = os.getenv("ADAFRUIT_IO_KEY")
-FEED_ID = "tag-data" 
+ADAFRUIT_IO_USERNAME = ""
+ADAFRUIT_IO_KEY      = ""
+FEED_ID = "" 
 
 OUTPUT_FILE = r"json/collected_dataset.json"
 # Initialize dataset if file doesn't exist
@@ -35,16 +33,20 @@ def disconnected(client):
 
 def message(client, feed_id, payload):
     print(f"Feed {feed_id} received new value: {payload}")
+#depth in m, temp in c, xacc, yacc, zacc in terms of g, lat, long
     try:
         # Split CSV payload
         parts = payload.split(",")
-        year, month, day, hour, minute, second, tag_id, depth, temp, lat, lon = parts
+        depth,temp,xacc,yacc,zacc , lat, lon = parts
 
         record = {
-            "timestamp": f"{year}-{month}-{day} {hour}:{minute}:{second}",
-            "tag_id": tag_id,
+            "timestamp" : datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "tag_id": 1,
             "depth": float(depth),
-            "temperature": float(temp),
+            "temp": float(temp),
+            "xacc": float(xacc),
+            "yacc": float(yacc),
+            "zacc": float(zacc),
             "latitude": float(lat),
             "longitude": float(lon)
         }
