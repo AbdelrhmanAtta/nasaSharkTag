@@ -80,7 +80,7 @@ chl_da = take_first_time_if_present(modis_chl_ds[chl_var]).squeeze()
 sst_da = take_first_time_if_present(modis_sst_ds[sst_var]).squeeze()
 
 # ------------------ Load SWOT Data ------------------
-swot_file = r"resources\SWOT_L2_LR_SSH_Basic_039_188_20250927T182722_20250927T185509_PID0_01.nc"
+swot_file = r"C:\Users\mr201\Desktop\SIC_Project\nasaSharkTag\monthly-data-folder\SWOT_L2_LR_SSH_Basic_016_541_20240617T115123_20240617T124251_PIC0_01_subsetted_20240619T235226Z_C2799465428-POCLOUD_merged.nc4"
 swot_ds = xr.open_dataset(swot_file)
 
 swot_lat_name, swot_lon_name = detect_coord_name(swot_ds)
@@ -157,7 +157,7 @@ pace_sst_on_modis.ravel()[:] = mapped_vals
 print("Mapped SWOT -> MODIS; assigned cells:", np.sum(np.isfinite(pace_sst_on_modis)))
 
 # ------------------ Shark JSON load (same robust parsing) ------------------
-json_path = "ai\shark_datasets_with_AI_predictions1.json"
+json_path = r"ai\shark_datasets_with_AI_predictions1.json"
 with open(json_path, "r") as f:
     shark_data = json.load(f)
 
