@@ -7,7 +7,6 @@ import publish_aidata
 from dotenv import load_dotenv
 import os
 
-
 load_dotenv()
 ADAFRUIT_IO_USERNAME = os.getenv("ADAFRUIT_IO_USERNAME")
 ADAFRUIT_IO_KEY = os.getenv("ADAFRUIT_IO_KEY")
