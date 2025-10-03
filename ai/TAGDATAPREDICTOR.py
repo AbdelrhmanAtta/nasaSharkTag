@@ -12,7 +12,6 @@ load_dotenv()
 ADAFRUIT_IO_USERNAME = os.getenv("ADAFRUIT_IO_USERNAME")
 ADAFRUIT_IO_KEY = os.getenv("ADAFRUIT_IO_KEY")
 
-
 with open (r"ai\shark_datasets.json","r") as f:
     data=json.load(f)
 
@@ -58,8 +57,6 @@ for dataset in unlabeled_data:
 with open(r"ai\shark_datasets_with_AI_predictions1.json","w") as f: 
     json.dump(unlabeled_data,f,indent=2)
 
-ADAFRUIT_IO_USERNAME = "mariamramy"
-ADAFRUIT_IO_KEY      = "aio_uoIw55X1R1raQKDlxKoMSzTvzWE4"
 
 publish_aidata.publish(ADAFRUIT_IO_USERNAME,ADAFRUIT_IO_KEY)
 
