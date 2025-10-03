@@ -18,6 +18,7 @@ def publish(ADAFRUIT_IO_USERNAME,ADAFRUIT_IO_KEY):
 
     # Loop through readings and publish depth, temp, lat, lon, probability
     for dataset in data:
+        id=dataset["dataset_id"]
         for reading in dataset["readings"]:
             time_st=reading["timestamp"]
             dt = datetime.fromisoformat(time_st)
@@ -29,7 +30,7 @@ def publish(ADAFRUIT_IO_USERNAME,ADAFRUIT_IO_KEY):
             prob = reading["predicted_probability_eating"]
         
             # Create the single string
-            payload = f"{formatted_time},{depth:.2f},{temp:.2f},{lat:.6f},{lon:.6f},{prob:.2f}"
+            payload = f"{formatted_time},{id},{depth:.2f},{temp:.2f},{lat:.6f},{lon:.6f},{prob:.2f}"
             print("Publishing:", payload)
 
             # Send to Adafruit IO
