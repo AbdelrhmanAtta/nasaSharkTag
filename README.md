@@ -100,6 +100,8 @@ ChatGPT: Assisted with code refinement and the critical generation of our synthe
 
 ###### Scientific Data Sources:
 
-Cardeñosa, D., et al. (2023). CITES listing of sharks and rays... Science.
+Cardeñosa, D., Shea, O., Feldheim, K., Heithaus, M. R., & Chapman, D. D. (2023). CITES listing of sharks and rays has had limited impact on their international trade. Science, 379(6633), 704-709.
+* [Read more](https://www.science.org/doi/10.1126/science.adf6423) 
+Pacoureau, N., Rigby, C. L., Kyne, P. M., Finucci, B., Jabado, R. W., ... & Dulvy, N. K. (2021). Half a century of global decline in oceanic sharks and rays. Nature, 589(7843), 567–571.
+* [Read more](Link: https://www.nature.com/articles/s41586-020-03173-9) 
 
-Pacoureau, N., et al. (2021). Half a century of global decline... Nature.
