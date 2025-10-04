@@ -62,9 +62,9 @@ The Guardian's Quiz: A fun, 10-question quiz designed to bust common myths and t
 
 Shark Tales: We believe empathy begins with a story. This section presents beautifully written narratives about different shark species, allowing users to connect with them as individuals, not monsters.
 
-Mission and motivation:
+Mission and motivation: Our mission is to close the gap between human ignorance and the urgent need for action. We build tools to make the invisible guardians of our ocean visible, transforming a failing, reactive conservation effort into a proactive, data-driven science.
 
-Vision:
+Vision: We envision a future where technology and nature are in harmony, where guesswork is eliminated from conservation, and where a global community of citizen-guardians feels the pulse of the planet and is empowered, daily, to protect it.
 ### Our Team: Maritime Orbiters
 We are a passionate, multidisciplinary team brought together by a shared sense of urgency to protect our oceans. We believe that technology, when guided by purpose, can solve our planet's greatest challenges.
 * Team Leader - [Marwan Mohamed]: Oversees the project, organizes activity, synchronizes milestones with conservation goals, and documents the project.
