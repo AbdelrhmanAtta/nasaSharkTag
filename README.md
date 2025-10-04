@@ -3,7 +3,7 @@
 Every year, an estimated 80 million sharks are killed, pushing ocean ecosystems toward collapse. Current conservation efforts are failing because they rely on static, "blind" protected areas for animals that are constantly migrating.
 Project Sentinel is our answer. It's a predictive intelligence platform that fuses NASA satellite data (PACE & SWOT) with a AI-powered smart-tag to create a global, real-time map of shark behavior. Our system doesn't just show where sharks are, it predicts when they will hunt, enabling the creation of proactive, Dynamic Marine Protected Areas that can finally keep pace with the animals they are designed to save.
 
-[Maritime Orbiter's website](https://your-url-goes-here.com) 
+[Maritime Orbiter's website - not deployed](https://github.com/AbdelrhmanAtta/nasaSharkTag/tree/main/webpage) 
 
 ![Project Sentinel](https://github.com/AbdelrhmanAtta/nasaSharkTag/blob/main/assets/1.png?raw=true)
 
@@ -43,6 +43,7 @@ Rich Sensor Suite: The tag is equipped with a high-fidelity accelerometer and gy
 Real-Time Intelligent Satellite Uplink: When the tag surfaces, it connects to satellite networks to upload its compressed data packets to our cloud platform, feeding the AI engine with a constant stream of new information. Furthermore, when the shark is at great depths and satellite connection is lost, the tag stores the data (all except location as gps connection is lost) in a buffer with time stamps to be able to transmit the data when connection is restored as the shark resurface; the location data that is lost is compensated by the AI's predictive path.
 
 Rugged & Non-Invasive Design: The conceptual design is hydrodynamic, rugged, and affixed non-invasively to the dorsal fin to ensure the shark's welfare is the top priority. We cannot protect these animals by harming them in the process.
+![TAG hardware](https://raw.githubusercontent.com/AbdelrhmanAtta/nasaSharkTag/refs/heads/main/assets/TAG.jpg?raw=true)
 ### Sentinel's AI
 Our AI is the brain of the operation, a dual-model engine that works in synergy to translate complex data into a simple, powerful prediction.
 
