@@ -45,7 +45,7 @@ Our framework is a geospatial data fusion pipeline that uses machine learning to
 
 4. Tag Efficiency (Markov Model): Separately, the smart tag itself is designed with a Markov model. This allows the tag to intelligently decide when sensor readings indicate a significant event, enabling it to transmit data only when necessary to maximize battery life.
 ### TAG
-The foundation of our ground-truth data is our innovative smart tag; a device conceptualized to be more intelligent, resilient, and energy-efficient than anything available today. This is currently a proof-of-concept, with the next version planned to utilize Argos satellite technology for even more robust global tracking.
+The foundation of our ground-truth data is our innovative smart tag; a proof-of-concept measuring ~4×9 cm, designed to be intelligent, resilient, and energy-efficient. The next version will be smaller, feature a longer-lasting battery, improved accuracy, robust error handling, and utilize Argos satellite technology for global tracking.
 
 Intelligent Power Management: The tag's greatest innovation is its power-saving system. Instead of constant, battery-draining data streams, it uses an adaptive Bayesian Markov chain model. This onboard TinyML model allows the tag to learn the shark's patterns and make smart decisions, only transmitting data when significant and noticable changes occurr, extending mission life from months to potentially years.
 
