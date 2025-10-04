@@ -10,11 +10,12 @@ Project Sentinel is our answer. It's a predictive intelligence platform that fus
 ## Table Of Contents
 1. [**Problem**](#the-problem)
 2. [**Features**](#features)
-3. [**TAG device**](#tag)
-4. [**Predictive AI**](#sentinels-ai)
-5. [**Web Platform**](#web-platform)
-6. [**Our Team**](#our-team-maritime-orbiters)
-7. [**Resources**](#resources)
+3. [**Mathematical framework**](#mathematical-framework)
+4. [**TAG device**](#tag)
+5. [**Predictive AI**](#sentinels-ai)
+6. [**Web Platform**](#web-platform)
+7. [**Our Team**](#our-team-maritime-orbiters)
+8. [**Resources**](#resources)
 ### The Problem
 A silent annihilation is unfolding beneath the waves, and our mission is born from the devastating reality of the numbers. In the last 50 years, the global population of oceanic sharks and rays has plummeted by a catastrophic 71% (Pacoureau et al., 2021). This isn't a natural decline; it's a slaughter driven by an industrial scale of overfishing that kills an estimated 80 million sharks annually (Cardeñosa et al., 2023).
 
@@ -33,6 +34,16 @@ Project Sentinel is a comprehensive, end-to-end solution designed to turn the ti
 * Smart Tag Design: We've conceptualized a next-generation shark tag that uses an adaptive Bayesian Markov chain model to make intelligent decisions about when to transmit data, radically increasing battery life and enabling long-term tracking missions.
 
 * Public Engagement Portal: To win the fight for our oceans, we must win hearts and minds. Our platform includes a dedicated educational portal with an interactive quiz, an e-book, and personal "Shark Tales" to transform public fear into fascination and advocacy.
+### Mathematical framework
+Our framework is a geospatial data fusion pipeline that uses machine learning to identify environmental niches likely to be shark foraging hotspots. The workflow is as follows:
+
+1. Data Fusion: We fuse multi-source NASA satellite data (MODIS for Chlorophyll/Temperature and SWOT for Sea Surface Height) into a single, unified analysis grid. This is achieved using a cKDTree algorithm for efficient nearest-neighbor interpolation, solving the challenge of mismatched data resolutions.
+
+2. Niche Definition: We mathematically define an ideal foraging hotspot based on a combination of environmental conditions (e.g., high chlorophyll, specific temperature range). This creates a "perfect" hotspot signature that we use to train our model.
+
+3. Predictive Classification: A Random Forest Classifier is trained to recognize this environmental signature. The model then analyzes the entire fused data grid and calculates the probability for each pixel, generating a final heatmap of likely foraging locations.
+
+4. Tag Efficiency (Markov Model): Separately, the smart tag itself is designed with a Markov model. This allows the tag to intelligently decide when sensor readings indicate a significant event, enabling it to transmit data only when necessary to maximize battery life.
 ### TAG
 The foundation of our ground-truth data is our innovative smart tag; a device conceptualized to be more intelligent, resilient, and energy-efficient than anything available today.
 
