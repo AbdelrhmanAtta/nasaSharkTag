@@ -84,7 +84,7 @@ SWOT Mission Data: Used to identify sea surface height anomalies, indicating oce
 
 AI/ML: Python, Scikit-learn, Pandas.
 
-Backend: .NET MVC, MS SQL.
+Backend: .NET MVC, MS SQL, MQTTServiceConnection.
 
 Frontend: HTML, javascript, CSS, Bootstrap.
 
