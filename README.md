@@ -82,11 +82,11 @@ SWOT Mission Data: Used to identify sea surface height anomalies, indicating oce
 
 ###### Core Technologies:
 
-AI/ML: Python, Scikit-learn, Pandas
+AI/ML: Python, Scikit-learn, Pandas.
 
-Backend: Flask
+Backend: .NET MVC, MS SQL.
 
-Frontend: React, Mapbox
+Frontend: HTML, javascript, CSS, Bootstrap.
 
 ###### Generative AI:
 
