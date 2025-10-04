@@ -34,7 +34,7 @@ Project Sentinel is a comprehensive, end-to-end solution designed to turn the ti
 
 * Public Engagement Portal: To win the fight for our oceans, we must win hearts and minds. Our platform includes a dedicated educational portal with an interactive quiz, an e-book, and personal "Shark Tales" to transform public fear into fascination and advocacy.
 ### TAG
-The foundation of our ground-truth data is our innovative smart tag—a device conceptualized to be more intelligent, resilient, and energy-efficient than anything available today.
+The foundation of our ground-truth data is our innovative smart tag; a device conceptualized to be more intelligent, resilient, and energy-efficient than anything available today.
 
 Intelligent Power Management: The tag's greatest innovation is its power-saving system. Instead of constant, battery-draining data streams, it uses an adaptive Bayesian Markov chain model. This onboard TinyML model allows the tag to learn the shark's patterns and make smart decisions, only transmitting data during key events or surfacing periods, extending mission life from months to potentially years.
 
