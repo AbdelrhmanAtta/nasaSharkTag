@@ -26,13 +26,13 @@ Project Sentinel is a comprehensive, end-to-end solution designed to turn the ti
 
 * Global Predictive Map: Our core feature is a dynamic, interactive world map that doesn't just show where sharks are, but uses AI to forecast where they are most likely to be next and their eating habits along with other data collected from the TAG.
 
-AI-Powered Foraging Score: We've developed a Random Forest Regressor model that analyzes environmental data to generate a real-time "Foraging Probability Score" from 0.0 to 1.0 for any given ocean region.
+* AI-Powered Foraging Score: We've developed a Random Forest Regressor model that analyzes environmental data to generate a real-time "Foraging Probability Score" from 0.0 to 1.0 for any given ocean region.
 
-Dynamic Sanctuary Concept: Our platform demonstrates how this predictive data can be used to create Dynamic Marine Protected Areas—intelligent, mobile sanctuaries that adapt and move with the animals they are designed to protect.
+* Dynamic Sanctuary Concept: Our platform demonstrates how this predictive data can be used to create Dynamic Marine Protected Areas—intelligent, mobile sanctuaries that adapt and move with the animals they are designed to protect.
 
-Smart Tag Design: We've conceptualized a next-generation shark tag that uses an adaptive Bayesian Markov chain model to make intelligent decisions about when to transmit data, radically increasing battery life and enabling long-term tracking missions.
+* Smart Tag Design: We've conceptualized a next-generation shark tag that uses an adaptive Bayesian Markov chain model to make intelligent decisions about when to transmit data, radically increasing battery life and enabling long-term tracking missions.
 
-Public Engagement Portal: To win the fight for our oceans, we must win hearts and minds. Our platform includes a dedicated educational portal with an interactive quiz, an e-book, and personal "Shark Tales" to transform public fear into fascination and advocacy.
+* Public Engagement Portal: To win the fight for our oceans, we must win hearts and minds. Our platform includes a dedicated educational portal with an interactive quiz, an e-book, and personal "Shark Tales" to transform public fear into fascination and advocacy.
 ### TAG
 The foundation of our ground-truth data is our innovative smart tag—a device conceptualized to be more intelligent, resilient, and energy-efficient than anything available today.
 
