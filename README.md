@@ -36,11 +36,11 @@ Project Sentinel is a comprehensive, end-to-end solution designed to turn the ti
 ### TAG
 The foundation of our ground-truth data is our innovative smart tag; a device conceptualized to be more intelligent, resilient, and energy-efficient than anything available today.
 
-Intelligent Power Management: The tag's greatest innovation is its power-saving system. Instead of constant, battery-draining data streams, it uses an adaptive Bayesian Markov chain model. This onboard TinyML model allows the tag to learn the shark's patterns and make smart decisions, only transmitting data during key events or surfacing periods, extending mission life from months to potentially years.
+Intelligent Power Management: The tag's greatest innovation is its power-saving system. Instead of constant, battery-draining data streams, it uses an adaptive Bayesian Markov chain model. This onboard TinyML model allows the tag to learn the shark's patterns and make smart decisions, only transmitting data when significant and noticable changes occurr, extending mission life from months to potentially years.
 
 Rich Sensor Suite: The tag is equipped with a high-fidelity accelerometer and gyroscope to capture the subtle movements that define a shark's behavior—the steady glide of travel, the languid motion of rest, and the explosive acceleration of a hunt.
 
-Real-Time Satellite Uplink: When the tag surfaces, it connects to satellite networks to upload its compressed data packets to our cloud platform, feeding the AI engine with a constant stream of new information.
+Real-Time Intelligent Satellite Uplink: When the tag surfaces, it connects to satellite networks to upload its compressed data packets to our cloud platform, feeding the AI engine with a constant stream of new information. Furthermore, when the shark is at great depths and satellite connection is lost, the tag stores the data (all except location as gps connection is lost) in a buffer with time stamps to be able to transmit the data when connection is restored as the shark resurface; the location data that is lost is compensated by the AI's predictive path.
 
 Rugged & Non-Invasive Design: The conceptual design is hydrodynamic, rugged, and affixed non-invasively to the dorsal fin to ensure the shark's welfare is the top priority. We cannot protect these animals by harming them in the process.
 ### Sentinel's AI
