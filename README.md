@@ -5,7 +5,7 @@ Project Sentinel is our answer. It's a predictive intelligence platform that fus
 
 [Maritime Orbiter's website](https://your-url-goes-here.com) 
 
-![Project Sentinel](https://private-user-images.githubusercontent.com/228541521/497376522-ffd052e5-89c9-4258-ba7c-790bab6493ec.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NTk1NDAxNDMsIm5iZiI6MTc1OTUzOTg0MywicGF0aCI6Ii8yMjg1NDE1MjEvNDk3Mzc2NTIyLWZmZDA1MmU1LTg5YzktNDI1OC1iYTdjLTc5MGJhYjY0OTNlYy5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUxMDA0JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MTAwNFQwMTA0MDNaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0wYWYwNWYyODg5YTEwNWFhODA1MDM4ZjA1ZjcxZTcyOTAzZWRkM2JmNGNiNjg5YjY5MzFjYWI2NGFhNmVmYjRiJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.8i87yePMyjt1M8HvVmguRcaU-XtIfhQ6iWJXrX9U_kc)
+![Project Sentinel](https://github.com/AbdelrhmanAtta/nasaSharkTag/blob/main/assets/1.png?raw=true)
 
 ## Table Of Contents
 1. [**Problem**](#the-problem)
