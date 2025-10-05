@@ -66,7 +66,7 @@ The conceptual design is hydrodynamic, rugged, and affixed non-invasively to the
 
 The current proof-of-concept measures approximately 4×9 cm and demonstrates these key innovations. The final version will be smaller, feature a longer-lasting battery, improved accuracy, robust error handling, and will be fully Argos-enabled for seamless global tracking.
 
-![TAG hardware](https://raw.githubusercontent.com/AbdelrhmanAtta/nasaSharkTag/refs/heads/main/assets/tag%20ref.jpg)
+![TAG hardware](https://raw.githubusercontent.com/AbdelrhmanAtta/nasaSharkTag/refs/heads/main/assets/tag%20refff.jpg)
 
 ### Sentinel's AI
 Our current AI framework uses a multi-model approach to predict shark presence and behavior by combining broad environmental analysis from satellite data with fine-scale insights from electronic tags. This system is built primarily on a Random Forest Regressor and Classifier.
@@ -82,6 +82,8 @@ Another model uses a shark's recent movement history to predict its next likely 
 By combining satellite-based habitat models with tag-based behavioral models, our framework provides a multi-dimensional view of shark activity. This is valuable for both conservation (protecting vulnerable habitats) and human safety (anticipating movements near coastlines).
 
 ![AI predictions of sharks probable location](https://raw.githubusercontent.com/AbdelrhmanAtta/nasaSharkTag/refs/heads/main/assets/AI%20detect.jpg)
+
+![AI predictions of sharks probable location](https://raw.githubusercontent.com/AbdelrhmanAtta/nasaSharkTag/refs/heads/main/assets/AI%20predict%202.jpg)
 
 ### Web Platform
 Our web platform is the bridge between our powerful AI and the people who can make a difference. It’s divided into two key areas: the data-rich Dashboard and the story-driven Engagement Portal.
