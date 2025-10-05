@@ -69,17 +69,19 @@ The current proof-of-concept measures approximately 4×9 cm and demonstrates the
 ![TAG hardware](https://raw.githubusercontent.com/AbdelrhmanAtta/nasaSharkTag/refs/heads/main/assets/tag%20ref.jpg)
 
 ### Sentinel's AI
-Our current model is designed to predict potential shark hotspots by tackling a core challenge: the absence of direct shark tracking data for training. To solve this, we developed a heuristic model built on established ecological principles rather than traditional machine learning.
+Our current AI framework uses a multi-model approach to predict shark presence and behavior by combining broad environmental analysis from satellite data with fine-scale insights from electronic tags. This system is built primarily on a Random Forest Regressor and Classifier.
 
-This approach uses a comprehensive suite of NASA satellite data as proxies for habitat suitability. We ingest and synthesize information from multiple missions, including:
+Satellite-Based Hotspot Prediction (The "Where"): The Random Forest Regressor analyzes a comprehensive suite of NASA satellite data from missions like MODIS, PACE, and SWOT. It produces continuous probability maps by identifying ecological correlations between environmental factors—such as chlorophyll concentration, sea surface temperature, and ocean eddies—and the conditions that create suitable shark habitats.
 
-MODIS and PACE (for chlorophyll, phytoplankton, and water clarity)
+Tag-Based Behavior Prediction (The "What" and "Where Next"): We use data from our prototype electronic tags to train two additional models:
 
-SWOT and NEUROST (for eddies, currents, and surface dynamics)
+A Random Forest Classifier analyzes acceleration and movement data from the tags to predict specific high-energy events, like feeding.
 
-SMAP/SMOS (for sea surface salinity)
+Another model uses a shark's recent movement history to predict its next likely location.
 
-Our model identifies regions where key environmental conditions known to be favorable for sharks and their prey overlap. By analyzing factors like chlorophyll concentration, sea surface temperature, ocean eddies, salinity, and light penetration, the model highlights potential hotspots. The output is a data-driven map of the most likely regions where sharks may aggregate, providing a powerful ecological perspective without requiring tagged animal data.
+By combining satellite-based habitat models with tag-based behavioral models, our framework provides a multi-dimensional view of shark activity. This is valuable for both conservation (protecting vulnerable habitats) and human safety (anticipating movements near coastlines).
+
+
 
 ### Web Platform
 Our web platform is the bridge between our powerful AI and the people who can make a difference. It’s divided into two key areas: the data-rich Dashboard and the story-driven Engagement Portal.
