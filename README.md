@@ -16,6 +16,7 @@ Project Sentinel is our answer. It's a predictive intelligence platform that fus
 6. [**Web Platform**](#web-platform)
 7. [**Our Team**](#our-team-maritime-orbiters)
 8. [**Resources**](#resources)
+9. [**Future of the Sentinel**](#future-of-the-sentinel)
 ### The Problem
 A silent annihilation is unfolding beneath the waves, and our mission is born from the devastating reality of the numbers. In the last 50 years, the global population of oceanic sharks and rays has plummeted by a catastrophic 71% (Pacoureau et al., 2021). This isn't a natural decline; it's a slaughter driven by an industrial scale of overfishing that kills an estimated 80 million sharks annually (Cardeñosa et al., 2023).
 
@@ -45,15 +46,23 @@ Our framework is a geospatial data fusion pipeline that uses machine learning to
 
 4. Tag Efficiency (Markov Model): Separately, the smart tag itself is designed with a Markov model. This allows the tag to intelligently decide when sensor readings indicate a significant event, enabling it to transmit data only when necessary to maximize battery life.
 ### TAG
-The foundation of our ground-truth data is our innovative smart tag; a proof-of-concept measuring ~4×9 cm, designed to be intelligent, resilient, and energy-efficient. The next version will be smaller, feature a longer-lasting battery, improved accuracy, robust error handling, and utilize Argos satellite technology for global tracking.
+Our primary innovation is the development of the first conceptualized, non-invasive smart tag that integrates a comprehensive sensor suite with next-generation satellite communication in an exceptionally small form factor. Unlike bulky or invasive alternatives, the Sentinel Tag is designed to provide rich, multi-layered data—including motion (IMU), temperature, pressure (depth), and precise location—while prioritizing animal welfare. Its core novelty lies in its planned integration of the Argos satellite system, moving beyond the limitations of coastal GSM networks to offer true, global open-ocean tracking capabilities. This represents a significant leap forward in creating a viable, long-term, and humane tool for marine research.
 
-Intelligent Power Management: The tag's greatest innovation is its power-saving system. Instead of constant, battery-draining data streams, it uses an adaptive Bayesian Markov chain model. This onboard TinyML model allows the tag to learn the shark's patterns and make smart decisions, only transmitting data when significant and noticable changes occurr, extending mission life from months to potentially years.
+This innovation is brought to life through the following key systems:
 
-Rich Sensor Suite: The tag is equipped with a high-fidelity accelerometer and gyroscope to capture the subtle movements that define a shark's behavior—the steady glide of travel, the languid motion of rest, and the explosive acceleration of a hunt.
+Intelligent Power Management
+The tag's greatest innovation is its power-saving system. Instead of constant, battery-draining data streams, it uses an adaptive Bayesian Markov chain model. This onboard TinyML model allows the tag to learn the shark's patterns and make smart decisions, only transmitting data when significant and noticeable changes occur, extending mission life from months to potentially years.
 
-Real-Time Intelligent Satellite Uplink: When the tag surfaces, it connects to satellite networks to upload its compressed data packets to our cloud platform, feeding the AI engine with a constant stream of new information. Furthermore, when the shark is at great depths and satellite connection is lost, the tag stores the data (all except location as gps connection is lost) in a buffer with time stamps to be able to transmit the data when connection is restored as the shark resurface; the location data that is lost is compensated by the AI's predictive path.
+Rich Sensor Suite
+The tag is equipped with a high-fidelity accelerometer and gyroscope (IMU) to capture the subtle movements that define a shark's behavior—the steady glide of travel, the languid motion of rest, and the explosive acceleration of a hunt. This is complemented by onboard temperature and pressure sensors to provide crucial environmental context.
 
-Rugged & Non-Invasive Design: The conceptual design is hydrodynamic, rugged, and affixed non-invasively to the dorsal fin to ensure the shark's welfare is the top priority. We cannot protect these animals by harming them in the process.
+Real-Time Intelligent Satellite Uplink
+When the tag surfaces, it connects to satellite networks to upload its compressed data packets to our cloud platform. Furthermore, when the shark is at great depths and satellite connection is lost, the tag stores sensor data in a buffer with timestamps. When the shark resurfaces and connection is restored, this buffered data is transmitted. The location data lost during the deep dive is compensated for by our AI's predictive path model, ensuring a more complete dataset.
+
+Rugged & Non-Invasive Design
+The conceptual design is hydrodynamic, rugged, and affixed non-invasively to the dorsal fin to ensure the shark's welfare is the top priority. We cannot protect these animals by harming them in the process.
+
+The current proof-of-concept measures approximately 4×9 cm and demonstrates these key innovations. The final version will be smaller, feature a longer-lasting battery, improved accuracy, robust error handling, and will be fully Argos-enabled for seamless global tracking.
 ![TAG hardware](https://github.com/AbdelrhmanAtta/nasaSharkTag/blob/main/assets/TAG.jpg?raw=true)
 ### Sentinel's AI
 Our AI is the brain of the operation, a dual-model engine that works in synergy to translate complex data into a simple, powerful prediction.
@@ -61,6 +70,7 @@ Our AI is the brain of the operation, a dual-model engine that works in synergy 
 The Classifier - "What is the shark doing?": The first stage is a Random Forest Classifier. It is trained on our synthetic tag data and NASA satellite data to analyze motion patterns. Its sole job is to classify the shark's current behavior into discrete states: ‘Traveling,’ ‘Resting,’ or the crucial ‘Hunting’ state.
 
 ![AI-NASA](https://raw.githubusercontent.com/AbdelrhmanAtta/nasaSharkTag/refs/heads/main/assets/AI%20predict%20satellite.jpg?raw=true)
+
 The Regressor - "How good is this hunting spot?": When the Classifier flags a ‘Hunting’ event, our Random Forest Regressor activates. It fuses the location of the hunt with multi-layered NASA satellite data, Chlorophyll, a concentrations from PACE and sea surface anomalies from SWOT. Its output is the "Foraging Probability Score," a number from 0.0 to 1.0 that tells conservationists how valuable that specific area is as a feeding ground.
 
 ![AI-tag](https://raw.githubusercontent.com/AbdelrhmanAtta/nasaSharkTag/refs/heads/main/assets/AI%20predict%20tag.jpg?raw=true)
@@ -117,3 +127,42 @@ Cardeñosa, D., Shea, O., Feldheim, K., Heithaus, M. R., & Chapman, D. D. (2023)
 Pacoureau, N., Rigby, C. L., Kyne, P. M., Finucci, B., Jabado, R. W., ... & Dulvy, N. K. (2021). Half a century of global decline in oceanic sharks and rays. Nature, 589(7843), 567–571.
 * [Read more](https://www.nature.com/articles/s41586-020-03173-9) 
 
+### Future of the Sentinel
+### Sentinel's Tag
+The device built during the hackathon served as a powerful proof-of-concept. The following roadmap details our plan to evolve it into a mission-ready, field-deployable device.
+
+Onboard Intelligence: The Leap to Edge AI
+To elevate the tag from a simple data logger to a truly intelligent agent, our roadmap includes the implementation of Edge AI directly on the device's MCU. This will enable advanced, real-time decision-making:
+
+* Predictive Dead Reckoning: For periods when the shark is too deep for a GPS fix, the Edge AI will use IMU data to predict and fill in location gaps, providing a more continuous data stream.
+
+* Intelligent Power Management: The onboard Markov chain model will be enhanced to actively manage power consumption, calculating the optimal times to transmit data based on battery level, behavior, and satellite availability.
+
+* Onboard Diagnostics: The AI will run a continuous warning system to detect sensor anomalies or physical damage, ensuring data integrity.
+
+Next-Generation Hardware & Miniaturization
+A key goal is to drastically reduce the tag's physical footprint to minimize its impact on the animal.
+
+* Next PCB: Our current prototype is approximately 4x9 cm. The next design iteration will target a miniaturized footprint of around 2.5x7.5 cm.
+
+* Component Evolution: This miniaturization and performance upgrade is made possible by transitioning to next-generation components.
+
+| Component | Hackathon Prototype | Next-Generation Design |
+| :--- | :--- | :--- |
+| **MCU** | STM32F4 Series | **STM32U5 Series (Ultra-Low-Power)** |
+| **Comms**| SIM800L (2G GSM) & NEO-7M (GPS) | **Arribada Argos SMD Module (Global Satellite)** |
+| **Antenna** | Generic | **Meteor FW.43 Flexible Whip (Bite-Proof)** |
+| **IMU** | MPU6050 | **TDK InvenSense ICM-45686 (High-Precision)** |
+| **Battery** | Standard Li-ion 3.7V | **ER18505 (High-Capacity, Long-Life)** |
+
+Firmware & Power Management Overhaul
+The firmware will be completely re-architected for maximum efficiency, with a goal of achieving a battery life of up to 3 years.
+
+* Interrupt-Based Architecture: The system will move from a polling-based model to being 100% interrupt-based. The device will remain in a deep sleep state, consuming near-zero power, and will only wake when a sensor interrupt reports a significant event.
+
+* Multi-Modal Operation: The tag will feature several distinct operating modes, such as:
+    * Working Mode: Normal data collection and transmission.
+    * Low Power Mode: Drastically reduced sensing and transmission frequency.
+    * Find Me Mode: A special transmission mode to aid in device recovery.
+* Robust Error Handling: The new firmware will include advanced error handling to manage data corruption, transmission failures, and sensor malfunctions gracefully.
+### Sentinel's AI
