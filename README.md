@@ -145,6 +145,7 @@ A key goal is to drastically reduce the tag's physical footprint to minimize its
 * Next PCB: Our current prototype is approximately 4x9 cm. The next design iteration will target a miniaturized footprint of around 2.5x7.5 cm.
 
 * Component Evolution: This miniaturization and performance upgrade is made possible by transitioning to next-generation components.
+
 | Component | Hackathon Prototype | Next-Generation Design |
 | :--- | :--- | :--- |
 | **MCU** | STM32F4 Series | **STM32U5 Series (Ultra-Low-Power)** |
