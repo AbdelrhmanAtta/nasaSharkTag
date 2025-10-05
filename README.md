@@ -59,7 +59,7 @@ The tag is equipped with a high-fidelity accelerometer and gyroscope (IMU) to ca
 Real-Time Intelligent Satellite Uplink
 When the tag surfaces, it connects to satellite networks to upload its compressed data packets to our cloud platform. Furthermore, when the shark is at great depths and satellite connection is lost, the tag stores sensor data in a buffer with timestamps. When the shark resurfaces and connection is restored, this buffered data is transmitted. The location data lost during the deep dive is compensated for by our AI's predictive path model, ensuring a more complete dataset.
 
-![DATA](https://raw.githubusercontent.com/AbdelrhmanAtta/nasaSharkTag/refs/heads/main/assets/IMU2.jpg)
+![DATA](https://raw.githubusercontent.com/AbdelrhmanAtta/nasaSharkTag/refs/heads/main/assets/Data.jpg)
 
 Rugged & Non-Invasive Design
 The conceptual design is hydrodynamic, rugged, and affixed non-invasively to the dorsal fin to ensure the shark's welfare is the top priority. We cannot protect these animals by harming them in the process.
@@ -153,6 +153,8 @@ Next-Generation Hardware & Miniaturization
 A key goal is to drastically reduce the tag's physical footprint to minimize its impact on the animal.
 
 ![IMU](https://raw.githubusercontent.com/AbdelrhmanAtta/nasaSharkTag/refs/heads/main/assets/IMU%201.jpg)
+
+![IMU](https://raw.githubusercontent.com/AbdelrhmanAtta/nasaSharkTag/refs/heads/main/assets/IMU3.jpg)
 
 * Next PCB: Our current prototype is approximately 4x9 cm. The next design iteration will target a miniaturized footprint of around 2.5x7.5 cm.
 
