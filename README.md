@@ -71,7 +71,7 @@ The current proof-of-concept measures approximately 4×9 cm and demonstrates the
 ### Sentinel's AI
 Artificial Intelligence forms the analytical backbone of our project, enabling predictive insights that would not be possible through raw satellite data alone. We developed a framework of three complementary machine learning models that work in synergy, linking the broad ocean environment with specific shark behaviors to create a multi-layered forecast.
 
-The foundation of our framework is the Shark Hotspot Model, a Random Forest Classifier. This model operates on the fused geospatial dataset created from MODIS and SWOT satellites, analyzing environmental factors like chlorophyll, sea surface temperature, and currents. Its purpose is to identify the large-scale ecological niches that match the mathematical definition of a prime shark foraging hotspot, producing a probability heatmap of likely aggregation zones.
+The foundation of our framework is the Shark Hotspot Model, a Random Forest Classifier. This model operates on the fused geospatial dataset created from MODIS, SWOT, PACE, and neuroOST satellites, analyzing environmental factors like chlorophyll, sea surface temperature, and currents. Its purpose is to identify the large-scale ecological niches that match the mathematical definition of a prime shark foraging hotspot, producing a probability heatmap of likely aggregation zones.
 
 To complement this broad environmental view, we use the Trajectory Forecaster, a Markov Chain model. This model focuses on individual movement, analyzing a shark's past position sequences from tag data to learn transition probabilities. This allows it to estimate short-term trajectories and anticipate where a specific shark might move next within the larger hotspots.
 
@@ -115,6 +115,13 @@ Our project stands on the shoulders of giants; from NASA's incredible open-sourc
 PACE Mission Data: Used for identifying Chlorophyll-a concentrations as a proxy for phytoplankton, the base of the ocean food web.
 
 SWOT Mission Data: Used to identify sea surface height anomalies, indicating ocean eddies and fronts where nutrients and prey congregate.
+
+MODIS Mission Data: Moderate Resolution Imaging Spectroradiometer (MODIS)-Aqua data for phytoplankton abundance
+###### Space Agency Data and Others:
+
+smartWhales: Using space to keep whales safe
+neuroOST --> eddies detection data
+* [Read more](https://search.earthdata.nasa.gov/search/granules?p=C3085229833-POCLOUD!C3085229833-POCLOUD&pg[1][a]=3401528705!3401529126!3401529128!3401529542!POCLOUD&pg[1][v]=t&pg[1][gsk]=-start_date&g=G3401528705-POCLOUD&tl=1511000074.069!5!!&fst0=Oceans&fsm0=Ocean%20Circulation&fs10=Eddies&lat=4.950000000000003&long=146.25&zoom=1) 
 
 ###### Core Technologies:
 
