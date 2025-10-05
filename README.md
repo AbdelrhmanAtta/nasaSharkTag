@@ -65,16 +65,18 @@ The conceptual design is hydrodynamic, rugged, and affixed non-invasively to the
 The current proof-of-concept measures approximately 4×9 cm and demonstrates these key innovations. The final version will be smaller, feature a longer-lasting battery, improved accuracy, robust error handling, and will be fully Argos-enabled for seamless global tracking.
 ![TAG hardware](https://github.com/AbdelrhmanAtta/nasaSharkTag/blob/main/assets/TAG.jpg?raw=true)
 ### Sentinel's AI
-Our AI is the brain of the operation, a dual-model engine that works in synergy to translate complex data into a simple, powerful prediction.
+Our current model is designed to predict potential shark hotspots by tackling a core challenge: the absence of direct shark tracking data for training. To solve this, we developed a heuristic model built on established ecological principles rather than traditional machine learning.
 
-The Classifier - "What is the shark doing?": The first stage is a Random Forest Classifier. It is trained on our synthetic tag data and NASA satellite data to analyze motion patterns. Its sole job is to classify the shark's current behavior into discrete states: ‘Traveling,’ ‘Resting,’ or the crucial ‘Hunting’ state.
+This approach uses a comprehensive suite of NASA satellite data as proxies for habitat suitability. We ingest and synthesize information from multiple missions, including:
 
-![AI-NASA](https://raw.githubusercontent.com/AbdelrhmanAtta/nasaSharkTag/refs/heads/main/assets/AI%20predict%20satellite.jpg?raw=true)
+MODIS and PACE (for chlorophyll, phytoplankton, and water clarity)
 
-The Regressor - "How good is this hunting spot?": When the Classifier flags a ‘Hunting’ event, our Random Forest Regressor activates. It fuses the location of the hunt with multi-layered NASA satellite data, Chlorophyll, a concentrations from PACE and sea surface anomalies from SWOT. Its output is the "Foraging Probability Score," a number from 0.0 to 1.0 that tells conservationists how valuable that specific area is as a feeding ground.
+SWOT and NEUROST (for eddies, currents, and surface dynamics)
 
-![AI-tag](https://raw.githubusercontent.com/AbdelrhmanAtta/nasaSharkTag/refs/heads/main/assets/AI%20predict%20tag.jpg?raw=true)
-Simulation & Validation: To prove this concept within the hackathon, we used ChatGPT to generate a robust, synthetic dataset simulating a year in the life of a shark. This "digital twin" allowed us to successfully train, test, and validate our AI pipeline from end to end.
+SMAP/SMOS (for sea surface salinity)
+
+Our model identifies regions where key environmental conditions known to be favorable for sharks and their prey overlap. By analyzing factors like chlorophyll concentration, sea surface temperature, ocean eddies, salinity, and light penetration, the model highlights potential hotspots. The output is a data-driven map of the most likely regions where sharks may aggregate, providing a powerful ecological perspective without requiring tagged animal data.
+
 ### Web Platform
 Our web platform is the bridge between our powerful AI and the people who can make a difference. It’s divided into two key areas: the data-rich Dashboard and the story-driven Engagement Portal.
 ![Home](https://raw.githubusercontent.com/AbdelrhmanAtta/nasaSharkTag/refs/heads/main/assets/Home.png?raw=true)
