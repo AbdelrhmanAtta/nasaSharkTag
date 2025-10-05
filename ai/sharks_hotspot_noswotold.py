@@ -319,7 +319,7 @@ plt.tight_layout()
 plt.show()
 
 # Optionally save the probability map to a NetCDF file for later use
-out_nc = os.path.join(base_dir, "monthly-data-folder", "modis_only_shark_hotspot_prob_map.nc")
+out_nc = os.path.join("monthly-data-folder", "modis_only_shark_hotspot_prob_map.nc")
 try:
     ds_out = xr.Dataset(
         {

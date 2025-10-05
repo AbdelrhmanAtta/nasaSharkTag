@@ -12,6 +12,8 @@ from sklearn.metrics import classification_report
 from sklearn.utils import resample
 from sklearn.preprocessing import StandardScaler
 import warnings
+import cartopy.crs as ccrs
+import cartopy.feature as cfeature
 
 warnings.simplefilter("default")
 
@@ -79,6 +81,12 @@ files = {
     "sm_1": os.path.join(monthly_dir, "SM_D2010152_Map_SATSSS_data_1day_1deg.nc"),
     "sm_2": os.path.join(monthly_dir, "SM_D2010154_Map_SATSSS_data_3days.nc"),
     "sm_3": os.path.join(monthly_dir, "SM_D2010155_Map_SATSSS_data_1day.nc"),
+
+    # ✅ Added NeurOST SSH-SST datasets (eddy dynamics)
+    "neur_ssh_sst_1": os.path.join(monthly_dir, "NeurOST_SSH-SST_20241208_20250206.nc"),
+    "neur_ssh_sst_2": os.path.join(monthly_dir, "NeurOST_SSH-SST_20241209_20250206.nc"),
+    "neur_ssh_sst_3": os.path.join(monthly_dir, "NeurOST_SSH-SST_20241210_20250206.nc"),
+    "neur_ssh_sst_4": os.path.join(monthly_dir, "NeurOST_SSH-SST_20241211_20250206.nc"),
 }
 
 # Verify files exist
@@ -134,10 +142,9 @@ def extract_and_regrid(ds_obj, prefer_keys=None, target_lat_name=chl_lat_name, t
     # Normalize lon coords of source to -180..180 to match target
     if lonname in da.coords:
         src_lon = da[lonname].values
-        if np.nanmax(src_lon) > 180:
-            # convert to -180..180
-            newlon = ((src_lon + 180) % 360) - 180
-            da = da.assign_coords({lonname: newlon})
+        src_lon = normalize_lon_array(src_lon)  # ✅ Always normalize
+        da = da.assign_coords({lonname: src_lon})
+
 
     # If dims are (y,x) or (lat,lon) with names matching target -> select or align
     try:
@@ -153,6 +160,19 @@ def extract_and_regrid(ds_obj, prefer_keys=None, target_lat_name=chl_lat_name, t
         except Exception:
             # last fallback: attempt to reshape / broadcast if already matching shape
             da_on_target = da
+
+            # ---- NEW: apply ocean mask from chlorophyll ----
+    if "chlor_a" in features:
+        chl_mask = np.isfinite(features["chlor_a"].values)
+        try:
+            arr = da_on_target.values
+            arr[~chl_mask] = np.nan
+            da_on_target = xr.DataArray(
+                arr, dims=da_on_target.dims, coords=da_on_target.coords, attrs=da_on_target.attrs
+            )
+        except Exception:
+            pass
+
     # Ensure the returned DataArray uses the target coordinate names
     if detect_coord_name(da_on_target) != (target_lat_name, target_lon_name):
         # rename dims if necessary
@@ -188,12 +208,28 @@ pref_map = {
     "sm_1": ['sss', 'salinity', 'sss_mean'],
     "sm_2": ['sss', 'salinity'],
     "sm_3": ['sss', 'salinity'],
+
+    # NeurOST SSH-SST
+    "neur_ssh_sst_1": ['ssh', 'sea_surface_height', 'sst', 'eddy'],
+    "neur_ssh_sst_2": ['ssh', 'sea_surface_height', 'sst', 'eddy'],
+    "neur_ssh_sst_3": ['ssh', 'sea_surface_height', 'sst', 'eddy'],
+    "neur_ssh_sst_4": ['ssh', 'sea_surface_height', 'sst', 'eddy'],
+
 }
 
 for key in ['flh', 'aph', 'kd', 'nsst', 'poc', 'aot', 'sst', 'sst4']:
     ds_obj = ds_objs[key]
     da_reg = extract_and_regrid(ds_obj, prefer_keys=pref_map.get(key, None))
     features[key] = take_first_time_if_present(da_reg).squeeze()
+
+
+# ---------- Extract NeurOST SSH-SST eddy features ----------
+neur_keys = ['neur_ssh_sst_1', 'neur_ssh_sst_2', 'neur_ssh_sst_3', 'neur_ssh_sst_4']
+for key in neur_keys:
+    ds_obj = ds_objs[key]
+    da_reg = extract_and_regrid(ds_obj, prefer_keys=pref_map.get(key, None))
+    features[key] = take_first_time_if_present(da_reg).squeeze()
+
 
 def da_to_grid(da):
     # Ensure dims are (lat, lon)
@@ -220,7 +256,11 @@ for k, arr in grid_arrays.items():
 n_pixels = flat_features['chlor_a'].size
 
 # Build feature matrix: stack available features in a deterministic order
-feature_keys = ['chlor_a', 'sst', 'sst4', 'nsst', 'poc', 'kd', 'aph', 'flh', 'aot']
+feature_keys = [
+    'chlor_a', 'sst', 'sst4', 'nsst', 'poc', 'kd', 'aph', 'flh', 'aot',
+    # Added dynamic ocean structure (NeurOST)
+    'neur_ssh_sst_1', 'neur_ssh_sst_2', 'neur_ssh_sst_3', 'neur_ssh_sst_4'
+]
 X_cols = []
 col_names = []
 for k in feature_keys:
@@ -334,18 +374,65 @@ if lat2d.shape == prob_map.shape:
         prob_map = np.flipud(prob_map)
         lat2d = np.flipud(lat2d)
 
-# Plotting predicted hotspot probability
-plt.figure(figsize=(10, 6))
-pcm = plt.pcolormesh(lon2d, lat2d, prob_map, shading='auto', cmap='coolwarm', vmin=0, vmax=1)
-plt.xlabel("Longitude")
-plt.ylabel("Latitude")
-plt.title("Predicted Shark Hotspots Probability")
-cbar = plt.colorbar(pcm, label="Hotspot Probability")
+
+# Create a map projection
+proj = ccrs.PlateCarree()
+
+plt.figure(figsize=(12, 6))
+ax = plt.axes(projection=proj)
+
+# Add map features
+ax.coastlines(resolution="110m", linewidth=0.8)
+ax.add_feature(cfeature.LAND, facecolor='lightgray', alpha=0.7)
+ax.add_feature(cfeature.OCEAN, facecolor='lightblue', alpha=0.3)
+ax.add_feature(cfeature.BORDERS, linestyle='--', linewidth=0.5)
+ax.gridlines(draw_labels=True, color='gray', alpha=0.3, linestyle='--')
+
+# Plot probability map
+pcm = ax.pcolormesh(
+    lon2d, lat2d, prob_map,
+    transform=ccrs.PlateCarree(),
+    shading='auto', cmap='coolwarm', vmin=0, vmax=1
+)
+
+# Overlay eddy contours if available
+try:
+    eddy_da = features['neur_ssh_sst_1']
+
+    # Normalize eddy longitude coords to match MODIS
+    latname, lonname = detect_coord_name(eddy_da)
+    if lonname in eddy_da.coords:
+        eddy_da = eddy_da.assign_coords({lonname: normalize_lon_array(eddy_da[lonname].values)})
+
+    # Apply ocean mask again just to be safe
+    if "chlor_a" in features:
+        chl_mask = np.isfinite(features["chlor_a"].values)
+        eddy_vals = eddy_da.values
+        eddy_vals[~chl_mask] = np.nan
+        eddy_da = xr.DataArray(eddy_vals, dims=eddy_da.dims, coords=eddy_da.coords)
+
+    # Now contour it safely
+    ax.contour(
+        lon2d, lat2d, eddy_da,
+        transform=ccrs.PlateCarree(),
+        colors='k', linewidths=0.4, alpha=0.5
+    )
+
+except Exception:
+    pass
+
+# Add colorbar and title
+cbar = plt.colorbar(pcm, orientation='horizontal', pad=0.05, shrink=0.8)
+cbar.set_label("Predicted Shark Hotspot Probability")
+
+ax.set_title("Predicted Shark Hotspots (with Eddy Contours)")
 plt.tight_layout()
 plt.show()
 
+
+
 # Optionally save the probability map to a NetCDF file for later use
-out_nc = os.path.join(base_dir, "monthly-data-folder", "modis_only_shark_hotspot_prob_map.nc")
+out_nc = os.path.join("monthly-data-folder", "modis_only_shark_hotspot_prob_map.nc")
 try:
     ds_out = xr.Dataset(
         {
