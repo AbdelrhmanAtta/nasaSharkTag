@@ -19,7 +19,7 @@ def publish(ADAFRUIT_IO_USERNAME,ADAFRUIT_IO_KEY):
     # Loop through readings and publish depth, temp, lat, lon, probability
     for dataset in data:
         id=dataset["dataset_id"]
-        dataset_id_num = hash(id)
+        dataset_id_num = 1
         for reading in dataset["readings"]:
             time_st=reading["timestamp"]
             dt = datetime.fromisoformat(time_st)
