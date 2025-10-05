@@ -166,3 +166,15 @@ The firmware will be completely re-architected for maximum efficiency, with a go
     * Find Me Mode: A special transmission mode to aid in device recovery.
 * Robust Error Handling: The new firmware will include advanced error handling to manage data corruption, transmission failures, and sensor malfunctions gracefully.
 ### Sentinel's AI
+### Future AI Model: A Data-Driven Predictive Engine
+Our vision is to evolve from our current expert-driven model to a true, data-driven system using machine learning and deep learning.
+
+The key enabler for this next phase is data acquisition. We plan to build a robust training dataset by deploying our prototype electronic tags on sharks. Combining this real-world shark movement data with the corresponding satellite-derived environmental features will allow us to train sophisticated predictive models.
+
+Inspired by successful deep learning applications in tracking other marine species, our future AI will be able to:
+
+Learn Complex Patterns: Identify subtle, non-linear relationships between the ocean environment and shark behavior that a heuristic model cannot.
+
+Improve Over Time: The models will continuously learn and increase in accuracy as more tagged shark data is collected.
+
+Expand Conservation Impact: Beyond just predicting hotspots, the ultimate goal is to support direct conservation interventions. The AI will be trained to identify high-risk areas—such as regions with heavy plastic pollution—that overlap with shark habitats, helping guide efforts to protect these vital species from emerging threats.
