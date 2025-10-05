@@ -161,9 +161,9 @@ The firmware will be completely re-architected for maximum efficiency, with a go
 
 ** Working Mode: Normal data collection and transmission.
 
-** Low Power Mode: Drastically reduced sensing and transmission frequency.
+    * Low Power Mode: Drastically reduced sensing and transmission frequency.
 
-** Find Me Mode: A special transmission mode to aid in device recovery.
+    * Find Me Mode: A special transmission mode to aid in device recovery.
 
 * Robust Error Handling: The new firmware will include advanced error handling to manage data corruption, transmission failures, and sensor malfunctions gracefully.
 ### Sentinel's AI
