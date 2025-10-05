@@ -81,7 +81,7 @@ Another model uses a shark's recent movement history to predict its next likely 
 
 By combining satellite-based habitat models with tag-based behavioral models, our framework provides a multi-dimensional view of shark activity. This is valuable for both conservation (protecting vulnerable habitats) and human safety (anticipating movements near coastlines).
 
-
+![AI predictions of sharks probable location](https://raw.githubusercontent.com/AbdelrhmanAtta/nasaSharkTag/refs/heads/main/assets/AI%20detect.jpg)
 
 ### Web Platform
 Our web platform is the bridge between our powerful AI and the people who can make a difference. It’s divided into two key areas: the data-rich Dashboard and the story-driven Engagement Portal.
@@ -182,14 +182,8 @@ The firmware will be completely re-architected for maximum efficiency, with a go
 * Robust Error Handling: The new firmware will include advanced error handling to manage data corruption, transmission failures, and sensor malfunctions gracefully.
 ### Sentinel's AI
 ### Future AI Model: A Data-Driven Predictive Engine
-Our vision is to evolve from our current expert-driven model to a true, data-driven system using machine learning and deep learning.
+Our vision is to evolve our current system by applying state-of-the-art AI techniques, including deep learning and computer vision, inspired by their successful use in tracking other marine species.
 
-The key enabler for this next phase is data acquisition. We plan to build a robust training dataset by deploying our prototype electronic tags on sharks. Combining this real-world shark movement data with the corresponding satellite-derived environmental features will allow us to train sophisticated predictive models.
+This next phase will be driven by training deep learning models on large, combined datasets of satellite observations and real-world tagged shark movements from our deployed smart tags. Unlike our current models, these advanced AIs will be capable of learning highly complex, non-linear patterns in the data, leading to predictions with significantly higher accuracy.
 
-Inspired by successful deep learning applications in tracking other marine species, our future AI will be able to:
-
-Learn Complex Patterns: Identify subtle, non-linear relationships between the ocean environment and shark behavior that a heuristic model cannot.
-
-Improve Over Time: The models will continuously learn and increase in accuracy as more tagged shark data is collected.
-
-Expand Conservation Impact: Beyond just predicting hotspots, the ultimate goal is to support direct conservation interventions. The AI will be trained to identify high-risk areas—such as regions with heavy plastic pollution—that overlap with shark habitats, helping guide efforts to protect these vital species from emerging threats.
+The ultimate goal is to expand beyond prediction to support direct conservation action. The future AI will be trained to identify and map high-risk areas where shark habitats overlap with man-made threats, such as plastic pollution and ocean waste. By highlighting these dangerous zones, our work can help guide interventions to protect these vital species and ensure their survival for generations to come.
