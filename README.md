@@ -3,8 +3,6 @@
 Every year, an estimated 80 million sharks are killed, pushing ocean ecosystems toward collapse. Current conservation efforts are failing because they rely on static, "blind" protected areas for animals that are constantly migrating.
 Project Sentinel is our answer. It's a predictive intelligence platform that fuses NASA satellite data (PACE & SWOT) with a AI-powered smart-tag to create a global, real-time map of shark behavior. Our system doesn't just show where sharks are, it predicts when they will hunt, enabling the creation of proactive, Dynamic Marine Protected Areas that can finally keep pace with the animals they are designed to save.
 
-[Maritime Orbiter's website - not deployed](https://github.com/AbdelrhmanAtta/nasaSharkTag/tree/main/webpage) 
-
 ![Project Sentinel](https://github.com/AbdelrhmanAtta/nasaSharkTag/blob/main/assets/1.png?raw=true)
 
 ## Table Of Contents
