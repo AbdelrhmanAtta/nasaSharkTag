@@ -70,6 +70,7 @@ Our AI is the brain of the operation, a dual-model engine that works in synergy 
 The Classifier - "What is the shark doing?": The first stage is a Random Forest Classifier. It is trained on our synthetic tag data and NASA satellite data to analyze motion patterns. Its sole job is to classify the shark's current behavior into discrete states: ‘Traveling,’ ‘Resting,’ or the crucial ‘Hunting’ state.
 
 ![AI-NASA](https://raw.githubusercontent.com/AbdelrhmanAtta/nasaSharkTag/refs/heads/main/assets/AI%20predict%20satellite.jpg?raw=true)
+
 The Regressor - "How good is this hunting spot?": When the Classifier flags a ‘Hunting’ event, our Random Forest Regressor activates. It fuses the location of the hunt with multi-layered NASA satellite data, Chlorophyll, a concentrations from PACE and sea surface anomalies from SWOT. Its output is the "Foraging Probability Score," a number from 0.0 to 1.0 that tells conservationists how valuable that specific area is as a feeding ground.
 
 ![AI-tag](https://raw.githubusercontent.com/AbdelrhmanAtta/nasaSharkTag/refs/heads/main/assets/AI%20predict%20tag.jpg?raw=true)
