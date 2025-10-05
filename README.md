@@ -158,13 +158,8 @@ The firmware will be completely re-architected for maximum efficiency, with a go
 * Interrupt-Based Architecture: The system will move from a polling-based model to being 100% interrupt-based. The device will remain in a deep sleep state, consuming near-zero power, and will only wake when a sensor interrupt reports a significant event.
 
 * Multi-Modal Operation: The tag will feature several distinct operating modes, such as:
-
-** Working Mode: Normal data collection and transmission.
-
+    * Working Mode: Normal data collection and transmission.
     * Low Power Mode: Drastically reduced sensing and transmission frequency.
-
     * Find Me Mode: A special transmission mode to aid in device recovery.
-
 * Robust Error Handling: The new firmware will include advanced error handling to manage data corruption, transmission failures, and sensor malfunctions gracefully.
 ### Sentinel's AI
-
