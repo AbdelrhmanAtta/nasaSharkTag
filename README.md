@@ -153,6 +153,7 @@ A key goal is to drastically reduce the tag's physical footprint to minimize its
 | **Antenna** | Generic | **Meteor FW.43 Flexible Whip (Bite-Proof)** |
 | **IMU** | MPU6050 | **TDK InvenSense ICM-45686 (High-Precision)** |
 | **Battery** | Standard Li-ion 3.7V | **ER18505 (High-Capacity, Long-Life)** |
+
 Firmware & Power Management Overhaul
 The firmware will be completely re-architected for maximum efficiency, with a goal of achieving a battery life of up to 3 years.
 
