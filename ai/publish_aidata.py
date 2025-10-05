@@ -2,6 +2,9 @@ import json
 import time
 from Adafruit_IO import Client
 from datetime import datetime
+from dotenv import load_dotenv
+import os
+
 
 # Your Adafruit IO credentials
 def publish(ADAFRUIT_IO_USERNAME,ADAFRUIT_IO_KEY):
@@ -38,3 +41,8 @@ def publish(ADAFRUIT_IO_USERNAME,ADAFRUIT_IO_KEY):
             aio.send_data(feed.key, payload)
 
             time.sleep(60)  # avoid rate limits
+load_dotenv()
+ADAFRUIT_IO_USERNAME = os.getenv("ADAFRUIT_IO_USERNAME")
+ADAFRUIT_IO_KEY = os.getenv("ADAFRUIT_IO_KEY")
+
+publish(ADAFRUIT_IO_USERNAME,ADAFRUIT_IO_KEY)
