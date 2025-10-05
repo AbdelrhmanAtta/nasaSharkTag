@@ -69,17 +69,15 @@ The current proof-of-concept measures approximately 4×9 cm and demonstrates the
 ![TAG hardware](https://raw.githubusercontent.com/AbdelrhmanAtta/nasaSharkTag/refs/heads/main/assets/tag%20refff.jpg)
 
 ### Sentinel's AI
-Our current AI framework uses a multi-model approach to predict shark presence and behavior by combining broad environmental analysis from satellite data with fine-scale insights from electronic tags. This system is built primarily on a Random Forest Regressor and Classifier.
+Artificial Intelligence forms the analytical backbone of our project, enabling predictive insights that would not be possible through raw satellite data alone. We developed a framework of three complementary machine learning models that work in synergy, linking the broad ocean environment with specific shark behaviors to create a multi-layered forecast.
 
-Satellite-Based Hotspot Prediction (The "Where"): The Random Forest Regressor analyzes a comprehensive suite of NASA satellite data from missions like MODIS, PACE, and SWOT. It produces continuous probability maps by identifying ecological correlations between environmental factors—such as chlorophyll concentration, sea surface temperature, and ocean eddies—and the conditions that create suitable shark habitats.
+The foundation of our framework is the Shark Hotspot Model, a Random Forest Classifier. This model operates on the fused geospatial dataset created from MODIS and SWOT satellites, analyzing environmental factors like chlorophyll, sea surface temperature, and currents. Its purpose is to identify the large-scale ecological niches that match the mathematical definition of a prime shark foraging hotspot, producing a probability heatmap of likely aggregation zones.
 
-Tag-Based Behavior Prediction (The "What" and "Where Next"): We use data from our prototype electronic tags to train two additional models:
+To complement this broad environmental view, we use the Trajectory Forecaster, a Markov Chain model. This model focuses on individual movement, analyzing a shark's past position sequences from tag data to learn transition probabilities. This allows it to estimate short-term trajectories and anticipate where a specific shark might move next within the larger hotspots.
 
-A Random Forest Classifier analyzes acceleration and movement data from the tags to predict specific high-energy events, like feeding.
+For the highest level of detail, the Tag Predictor Model, a Random Forest Regressor, analyzes the fine-scale movement signatures from the tag's sensors. Since publicly available tagged shark datasets are limited, we trained this model on a synthetic dataset that simulates realistic feeding patterns. This allows the regressor to estimate the probability of specific behaviors, like a feeding event, providing ground-truth context for what the shark is doing at a given location.
 
-Another model uses a shark's recent movement history to predict its next likely location.
-
-By combining satellite-based habitat models with tag-based behavioral models, our framework provides a multi-dimensional view of shark activity. This is valuable for both conservation (protecting vulnerable habitats) and human safety (anticipating movements near coastlines).
+This three-layered approach provides a comprehensive predictive picture: the Hotspot Mapper identifies the favorable "neighborhood," the Trajectory Forecaster predicts the likely "street," and the Tag Predictor identifies the specific "action." Together, these models bridge the gap between simulated biological data and real satellite data, enabling us to move from raw information to predictive ecological insights with direct applications in marine conservation and public safety.
 
 ![AI predictions of sharks probable location](https://raw.githubusercontent.com/AbdelrhmanAtta/nasaSharkTag/refs/heads/main/assets/AI%20detect.jpg)
 
